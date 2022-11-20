@@ -1,0 +1,7 @@
+CC=gcc
+LIBRARIES= -lgraphs -lbasics
+OUTPUT_FILE= graph.out
+
+run:
+	${CC} -L/usr/include/lib -Wall -o ${OUTPUT_FILE} main.c ${LIBRARIES}
+

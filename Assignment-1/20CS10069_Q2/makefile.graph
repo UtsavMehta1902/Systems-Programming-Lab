@@ -1,0 +1,19 @@
+CC=gcc
+OBJFILES = graph.o
+RM = rm -f
+LIBNAME = libgraphs.a
+INCLUDEDIR = /usr/include
+INCLUDESUBDIR = $(INCLUDEDIR)/lib
+
+install: library
+	-mkdir $(INCLUDESUBDIR)
+	cp graph.h $(INCLUDEDIR)
+	cp ${LIBNAME} $(INCLUDESUBDIR)
+
+library: ${OBJFILES}
+	ar rcs ${LIBNAME} ${OBJFILES}
+	-${RM} ${OBJFILES}
+
+graph.o: graph.h
+
+

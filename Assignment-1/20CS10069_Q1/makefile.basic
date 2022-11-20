@@ -1,0 +1,23 @@
+CC=gcc
+CFLAGS=-fPIC
+OBJFILES = llist.o queue.o stack.o union_find.o heap.o
+RM = rm -f
+LIBNAME = libbasics.so
+INCLUDEDIR = /usr/include
+INCLUDESUBDIR = $(INCLUDEDIR)/lib
+
+install: library
+	-mkdir $(INCLUDESUBDIR)
+	cp llist.h queue.h stack.h union_find.h heap.h $(INCLUDEDIR)
+	cp ${LIBNAME} $(INCLUDESUBDIR)
+
+library: ${OBJFILES}
+	${CC} -shared -o ${LIBNAME} ${OBJFILES}
+	-${RM} ${OBJFILES}
+
+llist.o: llist.h
+stack.o: stack.h llist.o
+queue.o: queue.h llist.o
+heap.o: heap.h
+union_find.o: union_find.h
+
